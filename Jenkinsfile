@@ -16,7 +16,7 @@ pipeline {
         stage('Lint') {
             steps {
                 sh '''
-                    pip install flake8
+                    pip3 install flake8
                     flake8 src/api/app.py
                 '''
             }
@@ -24,8 +24,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                    pip install -r src/api/requirements.txt
-                    pip install pytest
+                    pip3 install -r src/api/requirements.txt
+                    pip3 install pytest
                     pytest src/api/tests/ -v
                 '''
             }
