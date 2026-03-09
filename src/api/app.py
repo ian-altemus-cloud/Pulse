@@ -4,6 +4,7 @@ import os
 
 app = Flask(__name__)
 
+
 @app.route('/health', methods=['GET'])
 def health():
     return jsonify({
@@ -11,6 +12,7 @@ def health():
         'timestamp': datetime.datetime.utcnow().isoformat(),
         'version': os.environ.get('APP_VERSION', '1.0.0')
     }), 200
+
 
 @app.route('/metrics', methods=['GET'])
 def metrics():
@@ -22,6 +24,7 @@ def metrics():
         'status': 'nominal'
     }), 200
 
+
 @app.route('/status', methods=['GET'])
 def status():
     return jsonify({
@@ -30,6 +33,7 @@ def status():
         'task_id': os.environ.get('ECS_TASK_ID', 'local'),
         'version': os.environ.get('APP_VERSION', '1.0.0')
     }), 200
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
