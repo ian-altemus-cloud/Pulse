@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh '''
                     pip3 install flake8
-                    flake8 src/api/app.py
+                    python3 -m flake8 src/api/app.py
                 '''
             }
         }
@@ -26,7 +26,7 @@ pipeline {
                 sh '''
                     pip3 install -r src/api/requirements.txt
                     pip3 install pytest
-                    pytest src/api/tests/ -v
+                    python3 -m pytest src/api/tests/ -v
                 '''
             }
         }
