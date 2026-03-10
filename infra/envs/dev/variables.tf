@@ -13,3 +13,8 @@ variable "private_subnet_cidrs" {
 variable "availability_zones" {
   type = list(string)
 }
+
+variable "alert_email" {
+  description = "Email address for alerts"
+  type        = string
+}

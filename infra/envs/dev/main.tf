@@ -40,3 +40,14 @@ module "ecs" {
 output "alb_dns_name" {
   value = module.ecs.alb_dns_name
 }
+
+module "monitoring" {
+  source = "../../modules/monitoring"
+
+  project_name = "pulse"
+  environment = "dev"
+  alert_email = var.alert_email
+  health_endpoint = "http://${module.ecs.alb_dns_name}/health"
+  ecs_cluster_name = module.ecs.ecs_cluster_name
+  ecs_service_name = module.ecs.ecs_service_name
+}
