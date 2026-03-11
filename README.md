@@ -10,21 +10,7 @@ Every component exists for a reason. Every decision has a tradeoff. That's the s
 
 ## Architecture
 
-```
-                         ┌──────────────────────────────────────────┐
-                         │                 AWS VPC                  │
-                         │                                          │
-                         │  ┌─────────────────┐  ┌───────────────┐ │
-Internet ──► ALB ───────►│  │  Public Subnets  │  │Private Subnets│ │
-                         │  │   (ALB lives     │  │ (ECS tasks,   │ │
-                         │  │    here)         │  │  Lambda)      │ │
-                         │  └─────────────────┘  └───────────────┘ │
-                         │           │ NAT Gateway ▲               │
-                         └───────────┼─────────────┼───────────────┘
-                                     │             │
-                              Jenkins Pipeline   Lambda Health Monitor
-                         (Lint→Test→Build→Push→Deploy)  (polls /health → SNS)
-```
+![Pulse Architecture](docs/pulse-architecture.png)
 
 **Stack:**
 `Python Flask` → `Docker` → `ECR` → `ECS Fargate` → `ALB` → `VPC` → `Terraform` → `Jenkins` → `CloudWatch` → `Secrets Manager` → `Lambda` → `SNS`

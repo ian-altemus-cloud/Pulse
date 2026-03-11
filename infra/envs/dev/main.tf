@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "~>5.0"
     }
   }
@@ -14,12 +14,12 @@ provider "aws" {
 module "vpc" {
   source = "../../modules/vpc"
 
-  project_name = "pulse"
-  environment = "dev"
-  vpc_cidr = var.vpc_cidr
-  public_subnet_cidrs = var.public_subnet_cidrs
+  project_name         = "pulse"
+  environment          = "dev"
+  vpc_cidr             = var.vpc_cidr
+  public_subnet_cidrs  = var.public_subnet_cidrs
   private_subnet_cidrs = var.private_subnet_cidrs
-  availability_zones = var.availability_zones
+  availability_zones   = var.availability_zones
 }
 
 module "ecs" {
@@ -44,10 +44,10 @@ output "alb_dns_name" {
 module "monitoring" {
   source = "../../modules/monitoring"
 
-  project_name = "pulse"
-  environment = "dev"
-  alert_email = var.alert_email
-  health_endpoint = "http://${module.ecs.alb_dns_name}/health"
+  project_name     = "pulse"
+  environment      = "dev"
+  alert_email      = var.alert_email
+  health_endpoint  = "http://${module.ecs.alb_dns_name}/health"
   ecs_cluster_name = module.ecs.ecs_cluster_name
   ecs_service_name = module.ecs.ecs_service_name
 }
