@@ -10,7 +10,7 @@ Every component exists for a reason. Every decision has a tradeoff. That's the s
 
 ## Architecture
 
-![Pulse Architecture](docs/pulse-architecture.png)
+![Pulse Architecture](docs/Pulse_final_architecture.png)
 
 **Stack:**
 `Python Flask` → `Docker` → `ECR` → `ECS Fargate` → `ALB` → `VPC` → `Terraform` → `Jenkins` → `CloudWatch` → `Secrets Manager` → `Lambda` → `SNS`
